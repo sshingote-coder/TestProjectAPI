@@ -7,7 +7,8 @@ namespace TestProjectAPI.Store
 {
     public class ProductStore : IProductStore
     {
-        private const string Url = @"https://run.mocky.io/v3/cc147902-4a5a-4b1a-bc00-2220bafb49fd";
+        //private const string Url = @"https://run.mocky.io/v3/cc147902-4a5a-4b1a-bc00-2220bafb49fd";
+        private const string Url = @"https://pastebin.com/raw/JucRNpWs";
         private readonly ILogger<ProductStore> _logger;
 
         public ProductStore(ILogger<ProductStore> logger)

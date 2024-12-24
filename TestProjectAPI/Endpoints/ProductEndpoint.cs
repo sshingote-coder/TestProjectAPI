@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using TestProjectAPI.Services;
 
 namespace TestProjectAPI.Endpoints
@@ -11,12 +12,14 @@ namespace TestProjectAPI.Endpoints
     public class ProductEndpoint : ControllerBase
     {
         private readonly IProductService _productService;
+        private readonly ILogger<IProductService> _logger;
 
-        public ProductEndpoint(IProductService productService)
+        public ProductEndpoint(IProductService productService, ILogger<IProductService> logger)
         {
             Console.WriteLine(
                 $"Initializing Product endpoint {(productService == null ? "without" : "with")} ProductService");
             _productService = productService;
+            _logger = logger;
         }
 
         [HttpGet("/filter")]
@@ -31,6 +34,8 @@ namespace TestProjectAPI.Endpoints
             try
             {
                 var response = await _productService.FilterAsync(request, cancellationToken);
+                _logger?.LogInformation(
+               $"Received Response product filter request : {JsonConvert.SerializeObject(response, Formatting.Indented)}");
                 return Ok(response);
             }
             catch (HttpRequestException httpEx)

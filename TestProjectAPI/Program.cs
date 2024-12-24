@@ -10,7 +10,7 @@ namespace TestProjectAPI
 
         public static string CorsPolicyName = "CorsOriginPolicy";
         public static string SwaggerEndpointVersion = "v1";
-        public static string SwaggerEndpointName = "POQ Coding Challenge API";
+        public static string SwaggerEndpointName = "Phlo System Coding Challenge API";
         public static string SwaggerEndpoint = $"/swagger/{SwaggerEndpointVersion}/swagger.json";
         public static string HealthEndpoint = "/health";
         public static void Main(string[] args)
@@ -74,7 +74,7 @@ namespace TestProjectAPI
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint(SwaggerEndpoint, SwaggerEndpointName);
-                    c.RoutePrefix = string.Empty;
+                    c.RoutePrefix = "swagger";
                 });
 
                 app.UseEndpoints(endpoints =>
